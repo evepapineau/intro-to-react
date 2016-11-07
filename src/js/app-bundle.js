@@ -21429,6 +21429,7 @@
 	var React = __webpack_require__(1);
 	
 	var ImageCaption = __webpack_require__(173);
+	var Layout = __webpack_require__(174);
 	
 	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
 	
@@ -21452,6 +21453,31 @@
 	      ),
 	      React.createElement(ImageCaption, { source: 'http://i.imgur.com/D8JWn.jpg', text: 'Rainbow tail!' }),
 	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Testing Layout'
+	      ),
+	      React.createElement(
+	        Layout,
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'About us'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          'We are ',
+	          React.createElement(
+	            'a',
+	            { href: 'https://facebook.github.io/react/' },
+	            'React'
+	          ),
+	          ' developers!'
+	        )
+	      ),
 	      React.createElement(
 	        'div',
 	        null,
@@ -21496,6 +21522,54 @@
 	});
 	
 	module.exports = ImageCaption;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var Layout = React.createClass({
+	  displayName: "Layout",
+	
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "layout" },
+	      React.createElement(
+	        "nav",
+	        { className: "main-nav" },
+	        React.createElement(
+	          "ul",
+	          null,
+	          React.createElement(
+	            "li",
+	            null,
+	            React.createElement(
+	              "a",
+	              { href: "/" },
+	              "Home"
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        "main",
+	        null,
+	        this.props.children
+	      ),
+	      React.createElement(
+	        "footer",
+	        null,
+	        "Copywhat 2016 Kittens"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Layout;
 
 /***/ }
 /******/ ]);
