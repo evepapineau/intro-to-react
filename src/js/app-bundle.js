@@ -21430,6 +21430,8 @@
 	
 	var ImageCaption = __webpack_require__(173);
 	
+	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
+	
 	var App = React.createClass({
 	  displayName: 'App',
 	
@@ -21449,7 +21451,15 @@
 	        'testing ImageCaption'
 	      ),
 	      React.createElement(ImageCaption, { source: 'http://i.imgur.com/D8JWn.jpg', text: 'Rainbow tail!' }),
-	      React.createElement('hr', null)
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'div',
+	        null,
+	        ' ',
+	        imageList.map(function (picture) {
+	          return React.createElement(ImageCaption, { id: picture.id, source: picture.source, text: picture.text });
+	        })
+	      )
 	    );
 	  }
 	});
