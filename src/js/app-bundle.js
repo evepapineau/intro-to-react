@@ -21430,6 +21430,7 @@
 	
 	var ImageCaption = __webpack_require__(173);
 	var Layout = __webpack_require__(174);
+	var GuessTheNumber = __webpack_require__(175);
 	
 	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
 	
@@ -21485,7 +21486,8 @@
 	        imageList.map(function (picture) {
 	          return React.createElement(ImageCaption, { id: picture.id, source: picture.source, text: picture.text });
 	        })
-	      )
+	      ),
+	      React.createElement(GuessTheNumber, { myGuess: 50 })
 	    );
 	  }
 	});
@@ -21570,6 +21572,49 @@
 	});
 	
 	module.exports = Layout;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var GuessTheNumber = React.createClass({
+	    displayName: "GuessTheNumber",
+	
+	    _handleButtonClick: function _handleButtonClick() {
+	        var userGuess = parseInt(this.refs.userGuess.value);
+	        var myGuess = parseInt(this.props.myGuess);
+	
+	        if (userGuess === myGuess) {
+	            alert("Your guess is right!");
+	        } else if (userGuess > myGuess) {
+	            alert("Your guess is too high.");
+	        } else if (userGuess < myGuess) {
+	            alert("Your guess is too low.");
+	        }
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "p",
+	                null,
+	                React.createElement("input", { ref: "userGuess", type: "text" }),
+	                React.createElement(
+	                    "button",
+	                    { onClick: this._handleButtonClick },
+	                    "Guess!"
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = GuessTheNumber;
 
 /***/ }
 /******/ ]);

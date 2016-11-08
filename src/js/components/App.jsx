@@ -2,6 +2,7 @@ var React = require('react');
 
 var ImageCaption = require('./ImageCaption')
 var Layout = require('./Layout')
+var GuessTheNumber = require('./GuessTheNumber')
 
 var imageList = [
   {id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!"},
@@ -29,6 +30,8 @@ var App = React.createClass({
             })
           }
           </div>
+          <GuessTheNumber myGuess={50}>
+          </GuessTheNumber>
       </main>
     )
   }
