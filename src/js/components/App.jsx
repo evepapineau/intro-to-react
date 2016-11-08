@@ -5,6 +5,7 @@ var Layout = require('./Layout')
 var GuessTheNumber = require('./GuessTheNumber')
 var YouClicked = require('./YouClicked')
 var CharacterCounter = require('./CharacterCounter')
+var CharacterLimit = require('./CharacterLimit')
 
 var imageList = [
   {id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!"},
@@ -16,7 +17,7 @@ var App = React.createClass({
   render: function() {
     return (
       <main>
-        <CharacterCounter/>
+        <CharacterLimit limit={140}/>
       </main>
     )
   }

@@ -21433,6 +21433,7 @@
 	var GuessTheNumber = __webpack_require__(175);
 	var YouClicked = __webpack_require__(176);
 	var CharacterCounter = __webpack_require__(177);
+	var CharacterLimit = __webpack_require__(178);
 	
 	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
 	
@@ -21443,7 +21444,7 @@
 	    return React.createElement(
 	      'main',
 	      null,
-	      React.createElement(CharacterCounter, null)
+	      React.createElement(CharacterLimit, { limit: 140 })
 	    );
 	  }
 	});
@@ -21687,6 +21688,48 @@
 	});
 	
 	module.exports = CharacterCounter;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var CharacterLimit = React.createClass({
+	    displayName: "CharacterLimit",
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            currentInput: ""
+	        };
+	    },
+	    _handleInput: function _handleInput(event) {
+	        var value = event.target.value;
+	        var limit = this.props.limit;
+	
+	        if (value.length <= limit) {
+	            this.setState({
+	                currentInput: value
+	            });
+	        }
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement("input", { type: "text", value: this.state.currentInput, onInput: this._handleInput }),
+	            React.createElement(
+	                "p",
+	                null,
+	                this.props.limit - this.state.currentInput.length
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = CharacterLimit;
 
 /***/ }
 /******/ ]);
