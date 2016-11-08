@@ -21434,6 +21434,7 @@
 	var YouClicked = __webpack_require__(176);
 	var CharacterCounter = __webpack_require__(177);
 	var CharacterLimit = __webpack_require__(178);
+	var NumberGuessing = __webpack_require__(179);
 	
 	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
 	
@@ -21444,7 +21445,7 @@
 	    return React.createElement(
 	      'main',
 	      null,
-	      React.createElement(CharacterLimit, { limit: 140 })
+	      React.createElement(NumberGuessing, null)
 	    );
 	  }
 	});
@@ -21730,6 +21731,116 @@
 	});
 	
 	module.exports = CharacterLimit;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var NumberGuessing = React.createClass({
+	    displayName: 'NumberGuessing',
+	
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+	    _startGame: function _startGame() {
+	        this.setState({
+	            gameStatus: "playing",
+	            numberToGuess: Math.floor(Math.random() * 100 + 1),
+	            guesses: [],
+	            guessesLeft: 5
+	        });
+	    },
+	    _userGuesses: function _userGuesses() {
+	        var userGuess = parseInt(this.refs.userGuess.value);
+	        var numberToGuess = parseInt(this.state.numberToGuess);
+	
+	        if (userGuess === numberToGuess) {
+	            this.setState({
+	                gameStatus: 'win'
+	            });
+	        } else if (userGuess > numberToGuess) {
+	            alert('Try lower.');
+	        } else if (userGuess < numberToGuess) {
+	            alert('Try higher');
+	        }
+	        this.setState({
+	            guesses: this.state.guesses.concat([userGuess + " "]),
+	            guessesLeft: this.state.guessesLeft - 1
+	        });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this._startGame();
+	    },
+	    render: function render() {
+	
+	        if (this.state.gameStatus === "win") {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    'You win!'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { onClick: this._startGame },
+	                    'restart'
+	                )
+	            );
+	        } else if (this.state.guessesLeft > 0) {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement('input', { ref: 'userGuess', type: 'text' }),
+	                React.createElement(
+	                    'button',
+	                    { onClick: this._userGuesses },
+	                    'GUESS'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { onClick: this._startGame },
+	                    'NEW GAME'
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    'You guessed: ',
+	                    this.state.guesses
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    'You have ',
+	                    this.state.guessesLeft,
+	                    ' guesses left.'
+	                )
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    'You loose.'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { onClick: this._startGame },
+	                    'restart'
+	                )
+	            );
+	        }
+	    }
+	});
+	
+	module.exports = NumberGuessing;
 
 /***/ }
 /******/ ]);
