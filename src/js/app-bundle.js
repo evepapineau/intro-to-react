@@ -21431,6 +21431,7 @@
 	var ImageCaption = __webpack_require__(173);
 	var Layout = __webpack_require__(174);
 	var GuessTheNumber = __webpack_require__(175);
+	var YouClicked = __webpack_require__(176);
 	
 	var imageList = [{ id: 42, source: "http://placekitten.com/g/210/210", text: "Hello kittenz!" }, { id: 43, source: "https://facebook.github.io/react/img/logo.svg", text: "React Logo" }, { id: 44, source: "https://media.giphy.com/media/EldfH1VJdbrwY/giphy.gif", text: "Mind Blown!" }];
 	
@@ -21441,53 +21442,7 @@
 	    return React.createElement(
 	      'main',
 	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        'My first React App'
-	      ),
-	      React.createElement('hr', null),
-	      React.createElement(
-	        'h2',
-	        null,
-	        'testing ImageCaption'
-	      ),
-	      React.createElement(ImageCaption, { source: 'http://i.imgur.com/D8JWn.jpg', text: 'Rainbow tail!' }),
-	      React.createElement('hr', null),
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Testing Layout'
-	      ),
-	      React.createElement(
-	        Layout,
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'About us'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'We are ',
-	          React.createElement(
-	            'a',
-	            { href: 'https://facebook.github.io/react/' },
-	            'React'
-	          ),
-	          ' developers!'
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        ' ',
-	        imageList.map(function (picture) {
-	          return React.createElement(ImageCaption, { id: picture.id, source: picture.source, text: picture.text });
-	        })
-	      ),
-	      React.createElement(GuessTheNumber, { myGuess: 50 })
+	      React.createElement(YouClicked, null)
 	    );
 	  }
 	});
@@ -21615,6 +21570,58 @@
 	});
 	
 	module.exports = GuessTheNumber;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var YouClicked = React.createClass({
+	    displayName: "YouClicked",
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            timesButtonCount: 0,
+	            timesButtonParagraph: "You have not clicked the button."
+	        };
+	    },
+	    _onClick: function _onClick() {
+	        var buttonCount = this.state.timesButtonCount + 1;
+	        var buttonParagraph = this.state.timesButtonParagraph;
+	        if (buttonCount === 1) {
+	            buttonParagraph = "You clicked the button once.";
+	        } else if (buttonCount === 2) {
+	            buttonParagraph = "You clicked the button twice.";
+	        } else if (buttonCount >= 3) {
+	            buttonParagraph = "You clicked the button " + buttonCount + " times.";
+	        }
+	        this.setState({
+	            timesButtonCount: buttonCount,
+	            timesButtonParagraph: buttonParagraph
+	        });
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "button",
+	                { onClick: this._onClick },
+	                "Click me!"
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                this.state.timesButtonParagraph
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = YouClicked;
 
 /***/ }
 /******/ ]);
