@@ -15,7 +15,7 @@ var App = React.createClass({
   render: function() {
     return (
       <main>
-          <YouClicked></YouClicked>
+        <YouClicked/>
       </main>
     )
   }

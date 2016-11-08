@@ -21585,7 +21585,9 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            timesButtonCount: 0,
-	            timesButtonParagraph: "You have not clicked the button."
+	            timesButtonParagraph: "You have not clicked the button.",
+	            timesButtonReset: 0,
+	            timesButtonResetParagraph: ""
 	        };
 	    },
 	    _onClick: function _onClick() {
@@ -21603,6 +21605,20 @@
 	            timesButtonParagraph: buttonParagraph
 	        });
 	    },
+	    _onClickReset: function _onClickReset() {
+	        var buttonReset = this.state.timesButtonReset + 1;
+	        var buttonResetParagraph = this.state.timesButtonResetParagraph;
+	        if (buttonReset >= 1) {
+	            buttonResetParagraph = "You clicked the reset button " + buttonReset + " times.";
+	        }
+	        this.setState({
+	            timesButtonReset: buttonReset,
+	            timesButtonParagraph: "You have not clicked the button.",
+	            timesButtonResetParagraph: buttonResetParagraph,
+	            timesButtonCount: 0
+	
+	        });
+	    },
 	    render: function render() {
 	        return React.createElement(
 	            "div",
@@ -21613,9 +21629,19 @@
 	                "Click me!"
 	            ),
 	            React.createElement(
+	                "button",
+	                { onClick: this._onClickReset },
+	                "Reset me!"
+	            ),
+	            React.createElement(
 	                "p",
 	                null,
 	                this.state.timesButtonParagraph
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                this.state.timesButtonResetParagraph
 	            )
 	        );
 	    }
